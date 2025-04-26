@@ -4,8 +4,8 @@ import {
   useMemo,
   useRef,
   useState,
-  lazy,
-  Suspense,
+  lazy, 
+  Suspense, 
 } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
@@ -15,6 +15,7 @@ import {
   Outlet,
   RouterProvider,
   createHashRouter,
+  useLocation, 
 } from "react-router-dom";
 import { useMediaQuery } from "usehooks-ts";
 import { useRegisterSW } from "virtual:pwa-register/react";
@@ -32,10 +33,11 @@ import { iterCycle, iterNext, iterStutter } from "../misc/iter";
 import { publicPath } from "../misc/settings";
 
 import { Header } from "./Header";
+import { Footer } from "./Footer"; 
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { cn } from "@/lib/utils";
 import { ShieldIcon, SwordsIcon } from "lucide-react";
-import { useLocation } from "react-router-dom";
+
 
 import { Separator } from "./ui/separator";
 import {
@@ -46,18 +48,25 @@ import {
   CardTitle,
 } from "./ui/card";
 
+
 const LazyScreenDefense = lazy(() => import("@/screens/ScreenDefense"));
 const LazyScreenDefenseTeam = lazy(() => import("@/screens/ScreenDefenseTeam"));
 const LazyScreenOffense = lazy(() => import("@/screens/ScreenOffense"));
 const LazyScreenWeaknessCoverage = lazy(
   () => import("@/screens/ScreenWeaknessCoverage")
 );
-
 const LazyScreenCoverageList = lazy(
   () => import("@/screens/ScreenCoverageList")
 );
 const LazyScreenError = lazy(() => import("@/screens/ScreenError"));
 const LazyCrash = lazy(() => import("./Crash"));
+
+
+const LazyScreenContact = lazy(() => import("@/screens/ScreenContact"));
+const LazyScreenPrivacy = lazy(() => import("@/screens/ScreenPrivacy"));
+const LazyScreenDisclaimer = lazy(() => import("@/screens/ScreenDisclaimer"));
+
+
 
 const router = createHashRouter([
   {
@@ -66,8 +75,6 @@ const router = createHashRouter([
 
     errorElement: (
       <Suspense fallback={<div>Loading Error Screen...</div>}>
-        {" "}
-        {/* Add a fallback UI */}
         <LazyScreenError />
       </Suspense>
     ),
@@ -80,8 +87,6 @@ const router = createHashRouter([
             index: true,
             element: (
               <Suspense fallback={<div>Loading Offense Calculator...</div>}>
-                {" "}
-                {/* Add a fallback UI */}
                 <LazyScreenOffense />
               </Suspense>
             ),
@@ -95,8 +100,6 @@ const router = createHashRouter([
                   <Suspense
                     fallback={<div>Loading Weakness Coverage Summary...</div>}
                   >
-                    {" "}
-                    {/* Add a fallback UI */}
                     <LazyScreenWeaknessCoverage />
                   </Suspense>
                 ),
@@ -106,8 +109,6 @@ const router = createHashRouter([
                 path: "weakness",
                 element: (
                   <Suspense fallback={<div>Loading Weakness List...</div>}>
-                    {" "}
-                    {/* Add a fallback UI */}
                     <LazyScreenCoverageList mode="weakness" />
                   </Suspense>
                 ),
@@ -116,8 +117,6 @@ const router = createHashRouter([
                 path: "resistance",
                 element: (
                   <Suspense fallback={<div>Loading Resistance List...</div>}>
-                    {" "}
-                    {/* Add a fallback UI */}
                     <LazyScreenCoverageList mode="resistance" />
                   </Suspense>
                 ),
@@ -126,8 +125,6 @@ const router = createHashRouter([
                 path: "normal",
                 element: (
                   <Suspense fallback={<div>Loading Normal Damage List...</div>}>
-                    {" "}
-                    {/* Add a fallback UI */}
                     <LazyScreenCoverageList mode="normal" />
                   </Suspense>
                 ),
@@ -143,8 +140,6 @@ const router = createHashRouter([
             index: true,
             element: (
               <Suspense fallback={<div>Loading Defense Calculator...</div>}>
-                {" "}
-                {/* Add a fallback UI */}
                 <LazyScreenDefense />
               </Suspense>
             ),
@@ -153,8 +148,6 @@ const router = createHashRouter([
             path: "team",
             element: (
               <Suspense fallback={<div>Loading Defense Team Builder...</div>}>
-                {" "}
-                {/* Add a fallback UI */}
                 <LazyScreenDefenseTeam />
               </Suspense>
             ),
@@ -166,14 +159,39 @@ const router = createHashRouter([
         path: "_error",
         element: (
           <Suspense fallback={<div>Loading Crash Reporter...</div>}>
-            {" "}
-            {/* Add a fallback UI */}
             <LazyCrash />
           </Suspense>
         ),
       },
 
-      { path: "*", element: <Navigate replace to="/defense/" /> },
+      
+      {
+        path: "contact",
+        element: (
+          <Suspense fallback={<div>Loading Contact Page...</div>}>
+            <LazyScreenContact />
+          </Suspense>
+        ),
+      },
+      {
+        path: "privacy",
+        element: (
+          <Suspense fallback={<div>Loading Privacy Page...</div>}>
+            <LazyScreenPrivacy />
+          </Suspense>
+        ),
+      },
+      {
+        path: "disclaimer",
+        element: (
+          <Suspense fallback={<div>Loading Disclaimer Page...</div>}>
+            <LazyScreenDisclaimer />
+          </Suspense>
+        ),
+      },
+      
+
+      { path: "*", element: <Navigate replace to="/defense/" /> }, 
     ],
   },
 ]);
@@ -208,6 +226,7 @@ export function Layout(): ReactNode {
     await updateServiceWorker(true);
   }
 
+  
   const t = useTranslationsWithBlankFallback();
   const { i18n } = useTranslation(undefined, { useSuspense: false });
 
@@ -323,17 +342,19 @@ export function Layout(): ReactNode {
       <HelmetProvider>
         <Helmet>
           <html data-theme={dataTheme} />
-          {/* Use the hook's translation function */}
+          {/* Use the hook's translation function for the title */}
           <title>{t("title")}</title>
           {/* Add theme color meta tag if needed */}
           {/* <meta name="theme-color" content={themeColor} /> */}
         </Helmet>
 
         {/* The main layout structure stays in the initial bundle */}
+        {/* Use min-h-screen and flex flex-col to ensure footer is at the bottom */}
         <div className="min-h-screen flex flex-col">
           <Header />
 
           {/* Navigation Tabs */}
+          {/* Conditionally render tabs only on calculator pages, maybe? Or always show? Keeping it always for now */}
           <nav className="w-full flex justify-center items-center py-4">
             <div className="bg-muted rounded-full p-1 shadow-lg">
               {/* Use currentTab state to control which tab is visually active */}
@@ -347,16 +368,16 @@ export function Layout(): ReactNode {
                           "px-4 py-2 text-center transition-all duration-200 rounded-full",
                           "flex items-center justify-center",
                           isActive
-                            ? "bg-primary text-primary-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground"
+                            ? "bg-primary text-primary-foreground font-medium shadow-sm"
+                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
                         )
                       }
                     >
                       <SwordsIcon className="mr-1 h-4 w-4" />
-                      {t("navigation.offense", "Offense")}
+                      {/* Using hardcoded string here per request for specific elements */}
+                      Offense
                     </NavLink>
                   </TabsTrigger>
-
                   <TabsTrigger value="defense" className="p-4 m-2" asChild>
                     <NavLink
                       to="/defense/"
@@ -365,13 +386,14 @@ export function Layout(): ReactNode {
                           "px-4 py-2 text-center transition-all duration-200 rounded-full",
                           "flex items-center justify-center",
                           isActive
-                            ? "bg-primary text-primary-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground"
+                            ? "bg-primary text-primary-foreground font-medium shadow-sm"
+                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
                         )
                       }
                     >
                       <ShieldIcon className="mr-1 h-4 w-4" />
-                      {t("navigation.defense", "Defense")}
+                      {/* Using hardcoded string here per request for specific elements */}
+                      Defense
                     </NavLink>
                   </TabsTrigger>
                 </TabsList>
@@ -379,23 +401,21 @@ export function Layout(): ReactNode {
             </div>
           </nav>
 
-          {/* Main content area */}
+          {/* Main content area - flex-1 makes it grow and push footer down */}
           <main className="flex-1 p-2 sm:p-4">
             {/*
-              The Outlet is where the route components are rendered.
-              Since we wrapped them with Suspense in the router config,
-              React will handle loading and showing fallbacks automatically here.
-              No extra Suspense needed directly around Outlet unless you want
-              a single fallback for all route changes (less granular control).
+              The Outlet is where the route components (calculators or static pages) are rendered.
+              Suspense fallbacks are handled by the router configuration.
             */}
             <Outlet />
 
-            {/* Static informational content (always visible, part of main bundle) */}
-            <Separator className="my-8" />
-            <div className="space-y-6">
+           {(location.pathname.includes("offense") || location.pathname.includes("defense")) && (
+            <>
+            <Separator />
+              <div className="space-y-6 mt-20">
               <Card>
                 <CardHeader>
-                  <CardTitle>Pokémon Type Calculator</CardTitle>
+                  <CardTitle className="text-2xl">Pokémon Type Calculator</CardTitle>
                   <CardDescription>
                     Quickly find type weaknesses and resistances for strategic
                     battles.
@@ -420,7 +440,7 @@ export function Layout(): ReactNode {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>How to Use the Calculator</CardTitle>
+                 <CardTitle className="text-2xl">How to Use the Calculator</CardTitle>
                   <CardDescription>
                     Learn about Offense and Defense modes.
                   </CardDescription>
@@ -457,7 +477,7 @@ export function Layout(): ReactNode {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Type Matchups Explained</CardTitle>
+                 <CardTitle className="text-2xl">Type Matchups Explained</CardTitle>
                   <CardDescription>
                     Damage multipliers at a glance.
                   </CardDescription>
@@ -490,7 +510,7 @@ export function Layout(): ReactNode {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Game Generations</CardTitle>
+                 <CardTitle className="text-2xl">Game Generations</CardTitle>
                   <CardDescription>
                     Type charts can change between games.
                   </CardDescription>
@@ -504,7 +524,12 @@ export function Layout(): ReactNode {
                 </CardContent>
               </Card>
             </div>
+            </>
+           )}
           </main>
+
+          {/* Footer - placed after main content, mt-auto on footer pushes it down */}
+          <Footer />
         </div>
       </HelmetProvider>
     </AppContextProvider>
