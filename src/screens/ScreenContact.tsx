@@ -1,5 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Assuming shadcn cards
-
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function ScreenContact() {
   return (
     <div className="container mx-auto px-4 py-8">

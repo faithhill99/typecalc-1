@@ -356,50 +356,50 @@ export function Layout(): ReactNode {
           {/* Navigation Tabs */}
           {/* Conditionally render tabs only on calculator pages, maybe? Or always show? Keeping it always for now */}
           <nav className="w-full flex justify-center items-center py-4">
-            <div className="bg-muted rounded-full p-1 shadow-lg">
-              {/* Use currentTab state to control which tab is visually active */}
-              <Tabs value={currentTab}>
-                <TabsList className="w-full gap-1">
-                  <TabsTrigger value="offense" className="p-4 m-2" asChild>
-                    <NavLink
-                      to="/offense/"
-                      className={({ isActive }) =>
-                        cn(
-                          "px-4 py-2 text-center transition-all duration-200 rounded-full",
-                          "flex items-center justify-center",
-                          isActive
-                            ? "bg-primary text-primary-foreground font-medium shadow-sm"
-                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
-                        )
-                      }
-                    >
-                      <SwordsIcon className="mr-1 h-4 w-4" />
-                      {/* Using hardcoded string here per request for specific elements */}
-                      Offense
-                    </NavLink>
-                  </TabsTrigger>
-                  <TabsTrigger value="defense" className="p-4 m-2" asChild>
-                    <NavLink
-                      to="/defense/"
-                      className={({ isActive }) =>
-                        cn(
-                          "px-4 py-2 text-center transition-all duration-200 rounded-full",
-                          "flex items-center justify-center",
-                          isActive
-                            ? "bg-primary text-primary-foreground font-medium shadow-sm"
-                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
-                        )
-                      }
-                    >
-                      <ShieldIcon className="mr-1 h-4 w-4" />
-                      {/* Using hardcoded string here per request for specific elements */}
-                      Defense
-                    </NavLink>
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-            </div>
-          </nav>
+  <div className="bg-card rounded-full p-1 shadow-lg border border-border">
+    {/* Use currentTab state to control which tab is visually active */}
+    <Tabs value={currentTab}>
+      <TabsList className="w-full gap-1">
+        <TabsTrigger value="offense" className="p-4 m-2" asChild>
+          <NavLink
+            to="/offense/"
+            className={({ isActive }) =>
+              cn(
+                "px-4 py-2 text-center transition-all duration-200 rounded-full",
+                "flex items-center justify-center",
+                isActive
+                  ? "bg-primary font-medium shadow-sm"
+                  : "bg-background text-foreground hover:bg-accent hover:text-accent-foreground border border-input"
+              )
+            }
+          >
+            <SwordsIcon className="mr-1 h-4 w-4" />
+            {/* Using hardcoded string here per request for specific elements */}
+            Offense
+          </NavLink>
+        </TabsTrigger>
+        <TabsTrigger value="defense" className="p-4 m-2" asChild>
+          <NavLink
+            to="/defense/"
+            className={({ isActive }) =>
+              cn(
+                "px-4 py-2 text-center transition-all duration-200 rounded-full",
+                "flex items-center justify-center",
+                isActive
+                  ? "bg-primary font-medium shadow-sm"
+                  : "bg-background text-foreground hover:bg-accent hover:text-accent-foreground border border-input"
+              )
+            }
+          >
+            <ShieldIcon className="mr-1 h-4 w-4" />
+            {/* Using hardcoded string here per request for specific elements */}
+            Defense
+          </NavLink>
+        </TabsTrigger>
+      </TabsList>
+    </Tabs>
+  </div>
+</nav>
 
           {/* Main content area - flex-1 makes it grow and push footer down */}
           <main className="flex-1 p-2 sm:p-4">
