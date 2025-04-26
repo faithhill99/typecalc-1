@@ -129,6 +129,10 @@ more.contact.heading,Contact me,Contacteaza-ma
 more.contact.intro,"Hi, I'm <homepage>Sage</homepage> (they/them), and I made Pokémon Type Calculator (pkmn.help).","Bună, sunt <homepage>Sage</homepage> (ei) și am creat Calculator tip Pokémon (pkmn.help)."
 more.contact.email,Please email your thoughts and thank-yous to <email>pkmn@wavebeem.com</email>.,Trimite idei si mulțumiri la <email>pkmn@wavebeem.com</email>.
 more.settings.heading,Settings,Setari
+more.settings.open,Open Settings,
+more.settings.title,Settings,
+more.settings.description,"Adjust language, theme, and other options.",
+more.settings.generation.label,Select Generation,
 more.settings.language.label,Language,Limbi
 more.settings.language.default,Auto detect language,
 more.settings.language.official,Official languages,

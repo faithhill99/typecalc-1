@@ -15,7 +15,11 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "allowUmdGlobalAccess": false,
-    "types": ["vite-plugin-pwa/client"]
+    "types": ["vite-plugin-pwa/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src", "bin"]
 }

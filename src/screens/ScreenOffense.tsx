@@ -28,7 +28,7 @@ import {
 } from "../misc/data-types";
 import styles from "./ScreenOffense.module.css";
 
-export function ScreenOffense(): ReactNode {
+export default function ScreenOffense(): ReactNode {
   const { coverageTypes, fallbackCoverageTypes, isLoading } = useAppContext();
   const [generation] = useGeneration();
   const { t, i18n } = useTranslation();

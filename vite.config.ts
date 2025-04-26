@@ -4,6 +4,7 @@ import { defineConfig, UserConfigExport } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import * as fs from "fs";
 import * as path from "path";
+import tailwindcss from "@tailwindcss/vite"
 
 const iconVersion = 5;
 
@@ -154,6 +155,7 @@ export default defineConfig((env) => {
       },
     },
     plugins: [
+      tailwindcss(),
       react(),
       VitePWA({
         mode: env.mode !== "development" ? "production" : "development",
@@ -237,6 +239,11 @@ export default defineConfig((env) => {
         },
       }),
     ],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
+    }
   };
   return config;
 });

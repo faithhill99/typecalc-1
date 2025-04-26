@@ -2,6 +2,31 @@ import { closest } from "fastest-levenshtein";
 import removeAccents from "remove-accents";
 import { Generation } from "./data-generations";
 import { ValueOf } from "./util";
+import {
+  Circle,
+  Flame,
+  Droplet,
+  Leaf,
+  Skull,
+  Bolt,
+  Mountain,
+  Eye,
+  Snowflake,
+  Bug,
+  Ghost,
+  Moon,
+  Cog,
+  Sparkles,
+  Star,
+  Feather,
+  Hand,
+  ShieldQuestionIcon,
+  Shield,
+  ShieldQuestion,
+  Zap,
+  Gem,
+  HelpCircle,
+} from "lucide-react";
 
 export interface Pokemon {
   id: string;
@@ -51,7 +76,7 @@ export const Type = {
 
 const typeSet = new Set(Object.values(Type));
 
-export type SpecialMove = typeof specialMoves[number];
+export type SpecialMove = (typeof specialMoves)[number];
 export const specialMoves = [
   "thousand_arrows",
   "freeze-dry",

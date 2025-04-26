@@ -67,7 +67,7 @@ export function DexCoverage({
 
   return (
     <div className={styles.root}>
-      <Flex direction="column" gap="large">
+      <Flex direction="row" gap="medium">
         <Flex direction="column">
           <Meter value={weak.length} max={total} />
           <Flex gap="medium">

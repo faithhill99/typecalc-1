@@ -129,6 +129,10 @@ more.contact.heading,Contact me,문의
 more.contact.intro,"Hi, I'm <homepage>Sage</homepage> (they/them), and I made Pokémon Type Calculator (pkmn.help).","안녕하세요, 저는 <homepage>Sage</homepage> (they/them으로 지칭해 주세요) 이고 Pokémon Type Calculator (pkmn.help)를 만들었습니다."
 more.contact.email,Please email your thoughts and thank-yous to <email>pkmn@wavebeem.com</email>.,여러분의 생각과 감사를 <email>pkmn@wavebeem.com</email> 로 보내주세요.
 more.settings.heading,Settings,설정
+more.settings.open,Open Settings,
+more.settings.title,Settings,
+more.settings.description,"Adjust language, theme, and other options.",
+more.settings.generation.label,Select Generation,
 more.settings.language.label,Language,언어
 more.settings.language.default,Auto detect language,언어 자동 감지
 more.settings.language.official,Official languages,공식 지원 언어

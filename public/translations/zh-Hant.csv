@@ -129,6 +129,10 @@ more.contact.heading,Contact me,聯繫我
 more.contact.intro,"Hi, I'm <homepage>Sage</homepage> (they/them), and I made Pokémon Type Calculator (pkmn.help).",你好，我是 <homepage>Sage</homepage>（他們），我製作了 神奇寶貝屬性計算器 (pkmn.help）。
 more.contact.email,Please email your thoughts and thank-yous to <email>pkmn@wavebeem.com</email>.,請將您的想法和感謝發送到 <email>pkmn@wavebeem.com</email>。
 more.settings.heading,Settings,設置
+more.settings.open,Open Settings,
+more.settings.title,Settings,
+more.settings.description,"Adjust language, theme, and other options.",
+more.settings.generation.label,Select Generation,
 more.settings.language.label,Language,語言
 more.settings.language.default,Auto detect language,自動檢測語言
 more.settings.language.official,Official languages,官方語言

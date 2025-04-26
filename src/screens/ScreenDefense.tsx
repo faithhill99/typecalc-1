@@ -24,7 +24,7 @@ import {
 import styles from "./ScreenDefense.module.css";
 import { useGeneration } from "../hooks/useGeneration";
 
-export function ScreenDefense(): ReactNode {
+export default function ScreenDefense(): ReactNode {
   useScrollToFragment();
 
   const [generation] = useGeneration();

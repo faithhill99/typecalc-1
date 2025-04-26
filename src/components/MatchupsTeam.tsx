@@ -25,7 +25,7 @@ const matchupKeys = [
   "1/16",
   "0",
 ] as const;
-type MatchupKey = typeof matchupKeys[number];
+type MatchupKey = (typeof matchupKeys)[number];
 
 function getEffectivenessDisplay(
   langs: readonly string[],
@@ -161,7 +161,7 @@ export function MatchupsTeam({
 
   const rows: [Type, ...number[]][] = [];
   for (const genType of generationTypes) {
-    const row: typeof rows[number] = [genType];
+    const row: (typeof rows)[number] = [genType];
     for (const m of matchers) {
       let num = 0;
       for (const [typeIndex, types] of typesList.entries()) {

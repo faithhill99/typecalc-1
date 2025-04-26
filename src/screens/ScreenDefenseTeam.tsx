@@ -70,7 +70,7 @@ function setTeraTypeAt({
   return fullArray.map((v) => v || Type.none);
 }
 
-export function ScreenDefenseTeam(): ReactNode {
+export default function ScreenDefenseTeam(): ReactNode {
   useScrollToFragment();
 
   const [generation] = useGeneration();

@@ -6,7 +6,7 @@ import styles from "./ScreenPokedexHelp.module.css";
 import { Icon } from "../components/Icon";
 import { ReactNode } from "react";
 
-export function ScreenPokedexHelp(): ReactNode {
+export default function ScreenPokedexHelp(): ReactNode {
   const { t } = useTranslation();
   return (
     <main className="center content-narrow">

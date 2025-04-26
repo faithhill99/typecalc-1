@@ -9,7 +9,7 @@ import { resetApp } from "../misc/resetApp";
 import styles from "./ScreenError.module.css";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
-export function ScreenError(): ReactNode {
+export default function ScreenError(): ReactNode {
   const error = useRouteError();
 
   if (isRouteErrorResponse(error)) {

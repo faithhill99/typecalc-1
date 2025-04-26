@@ -26,7 +26,9 @@ interface CoverageListProps {
   mode: "weakness" | "resistance" | "normal";
 }
 
-export function ScreenCoverageList({ mode }: CoverageListProps): ReactNode {
+export default function ScreenCoverageList({
+  mode,
+}: CoverageListProps): ReactNode {
   const { coverageTypes } = useAppContext();
   const [generation] = useGeneration();
   const { t } = useTranslation();

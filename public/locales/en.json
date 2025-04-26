@@ -205,6 +205,12 @@
     },
     "settings": {
       "heading": "Settings",
+      "open": "Open Settings",
+        "title": "Settings",
+        "description": "Adjust language, theme, and other options.",
+        "generation": {
+          "label": "Select Generation"
+        },
       "language": {
         "label": "Language",
         "default": "Auto detect language",

@@ -21,7 +21,7 @@ import { formatMonsterNumber } from "../misc/formatMonsterNumber";
 import { pickTranslation } from "../misc/pickTranslation";
 import styles from "./ScreenPokedex.module.css";
 
-export function ScreenPokedex(): ReactNode {
+export default function ScreenPokedex(): ReactNode {
   const { allPokemon, isLoading } = useAppContext();
   const { t, i18n } = useTranslation();
   const { language } = i18n;

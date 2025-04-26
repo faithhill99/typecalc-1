@@ -1,0 +1,121 @@
+import { colord, extend } from "colord";
+import a11yPlugin from "colord/plugins/a11y";
+import lchPlugin from "colord/plugins/lch";
+
+
+extend([a11yPlugin, lchPlugin]);
+
+// Types definition
+export type Type = 
+  | "normal" | "fire" | "fighting" | "water" 
+  | "flying" | "grass" | "poison" | "electric" 
+  | "ground" | "psychic" | "rock" | "ice" 
+  | "bug" | "dragon" | "ghost" | "dark" 
+  | "steel" | "fairy" | "stellar" | "none";
+
+// Base colors for each type - refined from the image
+export const typeColors = {
+  normal: "#A8A878",
+  fighting: "#C03028",
+  flying: "#A890F0",
+  poison: "#A040A0",
+  ground: "#E0C068",
+  rock: "#B8A038",
+  bug: "#A8B820",
+  ghost: "#705898",
+  steel: "#B8B8D0",
+  fire: "#F08030",
+  water: "#6890F0",
+  grass: "#78C850",
+  electric: "#F8D030",
+  psychic: "#F85888",
+  ice: "#11add4",
+  dragon: "#7038F8",
+  dark: "#705848",
+  fairy: "#EE99AC",
+  stellar: "#46B5D1",
+  none: "#68A090"
+} as const;
+
+
+// Generate a complete color config for each type
+function generateTypeColorConfig() {
+  const config: Record<Type, {
+    main: string,
+    background: string,
+    border: string,
+    text: string,
+    lightVariant: string,
+    darkVariant: string
+  }> = {} as any;
+
+  Object.entries(typeColors).forEach(([type, baseColor]) => {
+    const color = colord(baseColor);
+    const typeName = type as Type;
+    
+    config[typeName] = {
+      main: baseColor,
+      background: color.darken(0.2).toHex(),
+      border: color.darken(0.3).toHex(),
+      text: color.isDark() ? "#ffffff" : "#333333",
+      lightVariant: color.lighten(0.15).toHex(),
+      darkVariant: color.darken(0.25).toHex()
+    };
+  });
+
+  return config;
+}
+
+export const typeColorConfig = generateTypeColorConfig();
+
+// Helper functions
+export function getTypeColor(type: Type, variant: keyof typeof typeColorConfig[Type] = "main"): string {
+  return typeColorConfig[type][variant];
+}
+
+export function getTypeColorWithAlpha(type: Type, alpha: number): string {
+  const hexAlpha = Math.floor((alpha / 100) * 255)
+    .toString(16)
+    .padStart(2, "0");
+  return `${typeColors[type]}${hexAlpha}`;
+}
+
+// Create an accessible color based on contrast requirements
+export function getAccessibleColor({
+  baseColor,
+  contrastColor = "#ffffff",
+  targetContrast = 4.5,
+  minDarken = 10
+}: {
+  baseColor: string,
+  contrastColor?: string,
+  targetContrast?: number,
+  minDarken?: number
+}): string {
+  const key = [baseColor, contrastColor, minDarken, targetContrast].join("-");
+  
+  // Check cache
+  let cachedColor = colorCache.get(key);
+  if (cachedColor) return cachedColor;
+  
+  // Convert to LCH color space for better perceptual adjustments
+  const lchColor = colord(baseColor).toLch();
+  const originalLightness = lchColor.l;
+  
+  // Gradually darken until we meet contrast requirements
+  while (colord(lchColor).contrast(contrastColor) < targetContrast) {
+    lchColor.l = Math.max(0, lchColor.l - 1);
+  }
+  
+  // Apply minimum darkening if needed
+  if (Math.abs(lchColor.l - originalLightness) < minDarken) {
+    lchColor.l = Math.max(0, originalLightness - minDarken);
+  }
+  
+  const result = colord(lchColor).toHex();
+  colorCache.set(key, result);
+  return result;
+}
+
+// Cache for expensive color calculations
+const colorCache = new Map<string, string>();

@@ -129,6 +129,10 @@ more.contact.heading,Contact me,Ta kontakt med meg
 more.contact.intro,"Hi, I'm <homepage>Sage</homepage> (they/them), and I made Pokémon Type Calculator (pkmn.help).","Hei, jeg er <homepage>Sage</homepage> (de/dem), og jeg har laget Pokémon Type Kalkulator (pkmn.help)."
 more.contact.email,Please email your thoughts and thank-yous to <email>pkmn@wavebeem.com</email>.,Plis send meg eposter om dine tanker og takker til <email>pkmn@wavebeem.com</email>.
 more.settings.heading,Settings,Instillinger
+more.settings.open,Open Settings,
+more.settings.title,Settings,
+more.settings.description,"Adjust language, theme, and other options.",
+more.settings.generation.label,Select Generation,
 more.settings.language.label,Language,Språk
 more.settings.language.default,Auto detect language,Automatisk oppdag språk
 more.settings.language.official,Official languages,Offisielle språk

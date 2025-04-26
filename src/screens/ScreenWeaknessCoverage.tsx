@@ -20,7 +20,7 @@ import styles from "./ScreenWeaknessCoverage.module.css";
 import { Icon } from "../components/Icon";
 import { useAppContext } from "../hooks/useAppContext";
 
-export function ScreenWeaknessCoverage(): ReactNode {
+export default function ScreenWeaknessCoverage(): ReactNode {
   const { setCoverageTypes, fallbackCoverageTypes, isLoading } =
     useAppContext();
   const { t } = useTranslation();
