@@ -443,10 +443,15 @@ export function Header(): ReactNode {
     }
   }, [effectiveLangApplied, i18n]);
 
-  // Reset function for hard refresh to home page
-  const handleReset = () => {
+const handleReset = () => {
+  // Clear all session storage
+  sessionStorage.clear();
+  
+  // Use setTimeout to create a brief delay before redirect
+  setTimeout(() => {
     window.location.href = '/';
-  };
+  }, 100); // 100ms delay - should be enough for most browsers
+};
 
   // Props bundle for SettingsControls (remains the same)
   const settingsProps: SettingsControlsProps = {
