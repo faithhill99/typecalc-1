@@ -3,12 +3,10 @@ import { cn } from '@/lib/utils';
 
 export function Footer() {
   return (
-    <footer className="w-full bg-muted text-muted-foreground py-6 mt-auto"> {/* mt-auto helps push it to the bottom */}
+    <footer className="w-full bg-muted text-muted-foreground py-6 mt-auto">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm">
-        <div className="mb-4 md:mb-0">
-          © {new Date().getFullYear()} TypeCalc. All rights reserved.
-        </div>
-        <nav className="flex space-x-4">
+        {/* Navigation links - appear first on mobile */}
+        <nav className="flex space-x-4 mb-4 md:mb-0 md:order-2">
           <NavLink
             to="/contact"
             className={({ isActive }) =>
@@ -23,7 +21,7 @@ export function Footer() {
           <NavLink
             to="/privacy"
             className={({ isActive }) =>
-               cn(
+              cn(
                 "hover:underline transition-colors",
                 isActive ? "text-foreground" : ""
               )
@@ -34,7 +32,7 @@ export function Footer() {
           <NavLink
             to="/disclaimer"
             className={({ isActive }) =>
-               cn(
+              cn(
                 "hover:underline transition-colors",
                 isActive ? "text-foreground" : ""
               )
@@ -43,6 +41,11 @@ export function Footer() {
             Disclaimer
           </NavLink>
         </nav>
+        
+        {/* Copyright text - appears second on mobile */}
+        <div className="md:order-1">
+          © {new Date().getFullYear()} TypeCalc. All rights reserved.
+        </div>
       </div>
     </footer>
   );

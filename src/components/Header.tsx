@@ -9,6 +9,7 @@ import {
   Moon,
   Laptop,
   Settings as SettingsIcon,
+  RefreshCw
 } from "lucide-react";
 
 // Import UI Components from shadcn/ui
@@ -442,6 +443,11 @@ export function Header(): ReactNode {
     }
   }, [effectiveLangApplied, i18n]);
 
+  // Reset function for hard refresh to home page
+  const handleReset = () => {
+    window.location.href = '/';
+  };
+
   // Props bundle for SettingsControls (remains the same)
   const settingsProps: SettingsControlsProps = {
     language: currentLanguageSetting,
@@ -469,8 +475,29 @@ export function Header(): ReactNode {
           </div>
 
           <div className="flex items-center gap-1 ml-auto">
+       
+
             <div className="hidden md:flex items-center gap-1 space-x-3">
               <SettingsControls {...settingsProps} isMobile={false} />
+                   {/* Reset Button for Desktop */}
+            <div className="hidden md:flex mr-2">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button 
+                    variant="outline"
+                    size="sm"
+                    className="h-9 text-xs"
+                    onClick={handleReset}
+                  >
+                    <RefreshCw className="h-4 w-4 mr-1" />
+                    {t("more.settings.reset", "Reset")}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{t("more.settings.resetTooltip", "Reset to defaults")}</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
             </div>
 
             <div className="md:hidden flex items-center">
@@ -499,6 +526,17 @@ export function Header(): ReactNode {
 
                   <div className="grid gap-4 py-4">
                     <SettingsControls {...settingsProps} isMobile={true} />
+                  </div>
+                  
+                  <div className="grid gap-4 py-4">
+                    <Button 
+                      variant="outline"
+                      onClick={handleReset}
+                      className="flex items-center justify-center"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      {t("more.settings.reset", "Reset to defaults")}
+                    </Button>
                   </div>
                 </SheetContent>
               </Sheet>
