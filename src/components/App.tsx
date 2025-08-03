@@ -62,6 +62,8 @@ const LazyScreenError = lazy(() => import("@/screens/ScreenError"));
 const LazyCrash = lazy(() => import("./Crash"));
 
 
+const LazyScreenAbout = lazy(() => import("@/screens/ScreenAbout"));
+const LazyScreenTerms = lazy(() => import("@/screens/ScreenTerms"));
 const LazyScreenContact = lazy(() => import("@/screens/ScreenContact"));
 const LazyScreenPrivacy = lazy(() => import("@/screens/ScreenPrivacy"));
 const LazyScreenDisclaimer = lazy(() => import("@/screens/ScreenDisclaimer"));
@@ -164,7 +166,22 @@ const router = createHashRouter([
         ),
       },
 
-      
+      {
+  path: "about",
+  element: (
+    <Suspense fallback={<div>Loading About Page...</div>}>
+      <LazyScreenAbout />
+    </Suspense>
+  ),
+},
+{
+  path: "terms",
+  element: (
+    <Suspense fallback={<div>Loading Terms & Conditions...</div>}>
+      <LazyScreenTerms />
+    </Suspense>
+  ),
+},
       {
         path: "contact",
         element: (
