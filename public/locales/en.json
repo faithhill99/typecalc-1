@@ -248,18 +248,6 @@
         "button": "Reset"
       }
     },
-    "privacy": {
-      "heading": "Privacy",
-      "description": "I will never run ads or steal your personal data. I use <plausible>Plausible Analytics</plausible>, which is self-funded, independent, hosted in the EU, and doesn't store any cookies on your computer."
-    },
-    "givingBack": {
-      "heading": "Showing appreciation",
-      "description": "I have spent countless hours improving this site. If you appreciate what I've made, please consider donating to charities that support racial justice and transgender rights."
-    },
-    "thanks": {
-      "heading": "Special thanks",
-      "description": "See everyone who's helped make this website in the <credits>credits</credits>."
-    },
     "openSource": {
       "heading": "Open source",
       "description": "Source code is available on <github>GitHub</github>."
