@@ -14,7 +14,7 @@ import {
   Navigate,
   Outlet,
   RouterProvider,
-  createHashRouter,
+  createBrowserRouter,
   useLocation, 
 } from "react-router-dom";
 import { useMediaQuery } from "usehooks-ts";
@@ -70,7 +70,7 @@ const LazyScreenDisclaimer = lazy(() => import("@/screens/ScreenDisclaimer"));
 
 
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
