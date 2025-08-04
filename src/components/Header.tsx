@@ -475,7 +475,7 @@ const handleReset = () => {
         <div className="container mx-auto flex h-14 items-center px-4">
           <div className="flex items-center mr-auto">
             <Link to={"/"} className="font-bold text-lg">
-              Type Calclator
+              Type Calculator
             </Link>
           </div>
 
