@@ -429,7 +429,7 @@ export function Layout(): ReactNode {
            {(location.pathname.includes("offense") || location.pathname.includes("defense")) && (
             <>
             <Separator />
-              <div className="space-y-6 mt-20 max-w-2xl w-full px-4 mx-auto">
+                 <div className="space-y-6 mt-20 max-w-2xl mx-auto">
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl">Pokémon Type Calculator</CardTitle>
