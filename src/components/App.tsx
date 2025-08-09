@@ -429,14 +429,10 @@ export function Layout(): ReactNode {
            {(location.pathname.includes("offense") || location.pathname.includes("defense")) && (
             <>
             <Separator />
-              <div className="space-y-6 mt-20">
+              <div className="space-y-6 mt-20 max-w-2xl w-full px-4 mx-auto">
               <Card>
                 <CardHeader>
                   <CardTitle className="text-2xl">Pokémon Type Calculator</CardTitle>
-                  <CardDescription>
-                    Quickly find type weaknesses and resistances for strategic
-                    battles.
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground">
                   <p>
@@ -458,9 +454,6 @@ export function Layout(): ReactNode {
               <Card>
                 <CardHeader>
                  <CardTitle className="text-2xl">How to Use the Calculator</CardTitle>
-                  <CardDescription>
-                    Learn about Offense and Defense modes.
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground">
                   <h3 className="text-lg font-semibold text-foreground">
@@ -495,9 +488,6 @@ export function Layout(): ReactNode {
               <Card>
                 <CardHeader>
                  <CardTitle className="text-2xl">Type Matchups Explained</CardTitle>
-                  <CardDescription>
-                    Damage multipliers at a glance.
-                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4 text-muted-foreground">
                   <p>Here's how type effectiveness changes damage:</p>
